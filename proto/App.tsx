@@ -1,13 +1,7 @@
 import React from "react"
 
-// export const App = ({ Component, pageProps }: { pageProps: any, Component: any }) => {
-//     return (
-//         <Component {...pageProps} />
-//     )
-// }
-
-export const App = () => {
+export const App = ({ Component, pageProps }) => {
     return (
-        <button onClick={console.log}>Xesque do dele</button>
+        <Component {...pageProps} />
     )
 }

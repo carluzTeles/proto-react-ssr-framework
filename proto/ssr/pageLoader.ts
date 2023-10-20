@@ -30,16 +30,16 @@ export const pageLoader = async ({
 
     const pagesFolderPath = path.resolve(srcFolder, "pages")
 
-    const [{ default: Page, GetServerSideProps }, { App }] = await Promise.all([
+    const [{ default: Page, getServerSideProps }, { App }] = await Promise.all([
         vite.ssrLoadModule(`${pagesFolderPath}/${urlToFilePath(url)}`),
         vite.ssrLoadModule('/proto/App.tsx')
     ])
 
     let props = {}
 
-    const isSSR = !!GetServerSideProps
+    const isSSR = !!getServerSideProps
 
-    if(isSSR) props = await GetServerSideProps()
+    if(isSSR) props = await getServerSideProps()
 
     return { template, Page, props, App }
 }

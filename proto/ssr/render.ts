@@ -30,6 +30,15 @@ export const render = ({ vite }: Props): RequestHandler =>
 
             const html = template
                 .replace(`<!--app-html-->`, appHtml)
+                .replace(
+                    "</head>",
+                    `<script type="text/javascript">window._PROPS_ = ${JSON.stringify(
+                        {
+                            path: url,
+                            pageProps: props
+                        }
+                    )}</script></head>`
+                );
 
             res.status(200).set({ "Content-Type": "text/html" }).end(html)
         } catch (e: any) {
